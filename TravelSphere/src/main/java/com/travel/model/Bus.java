@@ -10,7 +10,12 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Data;
+
 @Entity
+@Data
 public class Bus {
 
 	@Id
@@ -29,8 +34,17 @@ public class Bus {
 	@NotNull
 	private String busTo;
 	
+	@NotBlank
+	@NotEmpty
+	@NotNull
+	private String journeyDate;
+	
+	
+	private String travelName;
+	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Travel travel;
 	
 	

@@ -1,6 +1,6 @@
 package com.travel.model;
 
-import javax.annotation.Generated;
+
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -26,6 +26,7 @@ public abstract class User {
 //	@NotBlank
 //	@NotEmpty
 //	@NotNull
+
 	
 	@Enumerated(EnumType.STRING)
 	private UserType userType;

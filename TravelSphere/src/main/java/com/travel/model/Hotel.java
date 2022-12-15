@@ -9,7 +9,10 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import lombok.Data;
+
 @Entity
+@Data
 public class Hotel {
 
 	@Id
@@ -25,6 +28,11 @@ public class Hotel {
 	@NotEmpty
 	@NotNull
 	private  String hotelDescription;
+	
+	@NotBlank
+	@NotEmpty
+	@NotNull
+	private  String hotelAddress;
 	
 	
 	private Integer avilableRooms;

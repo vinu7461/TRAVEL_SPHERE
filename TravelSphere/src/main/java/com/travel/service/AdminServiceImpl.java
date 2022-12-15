@@ -21,7 +21,7 @@ public class AdminServiceImpl implements AdminService {
 	public Admin createAdmin(Admin admin) throws AdminException {
 		// TODO Auto-generated method stub
 		
-		if(admin.getUserType().equals("ADMIN")) {  //we need to resolve enum issue
+//		if(admin.getUserType().equals("ADMIN")) {  //we need to resolve enum issue
 		
 	   Admin existingAdmin=adminRepo.findByEmail(admin.getEmail());
 
@@ -33,10 +33,10 @@ public class AdminServiceImpl implements AdminService {
 	   
 	 
 	   return saveAdmin;}
-		else {
-			throw new AdminException("Admin already Exists With this userType");
-		}
-	}
+//		else {
+//			throw new AdminException("Admin already Exists With this userType");
+//		}
+//	}
 
 	
 	
