@@ -6,13 +6,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.security.auth.kerberos.KerberosTicket;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.util.RouteMatcher.Route;
+
 
 import lombok.Data;
 
@@ -44,8 +43,10 @@ public class Package {
 	@NotNull
 	private PackageType packageType;
 	
-	@Min(1000)
+
 	private Double packageCost;
+	
+
 	
 	@NotBlank
 	@NotEmpty
@@ -57,6 +58,12 @@ public class Package {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Ticket ticket ;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Route route;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Bus bus;
 	
 	
 
