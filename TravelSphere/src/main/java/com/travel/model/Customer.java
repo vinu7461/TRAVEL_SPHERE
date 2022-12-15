@@ -26,7 +26,7 @@ public class Customer extends User {
 	@Email
 	private String email;
 	
-	@Pattern(regexp = "[7,8,9]{1}[0-9]{9}")
+	@Pattern(regexp = "[6789]{1}[0-9]{9}",message = "Mobile Number start with 6,7,8,9 and must be 10 digit")
 	private String mobile;
 	
 	@Pattern(regexp = "[A-Za-z0-9@]{6,15}")
