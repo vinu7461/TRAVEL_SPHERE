@@ -42,7 +42,7 @@ public class Package {
 	@NotBlank
 	@NotEmpty
 	@NotNull
-	private String packageType;
+	private PackageType packageType;
 	
 	@Min(1000)
 	private Double packageCost;
@@ -57,6 +57,7 @@ public class Package {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Ticket ticket ;
+	
 	
 
 }

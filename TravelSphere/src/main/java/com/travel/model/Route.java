@@ -52,11 +52,18 @@ public class Route {
 	@NotNull
 	private String pickUpPoint;
 	
-	private String packageType;
-	@Min(1000)
-	private Double packageCost;
+	@NotBlank
+	@NotEmpty
+	@NotNull
+	private String dropPoint;
 	
-	private  String paymentMode="online";
+	
+	
+	
+	
+	
+
+	
 	
 	
 	

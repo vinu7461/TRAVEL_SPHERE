@@ -13,8 +13,40 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 	
+	
+
+
+	
+	@ExceptionHandler(RuntimeException.class)
+	public ResponseEntity<MyErrorDetails> myexceptionhandler(RuntimeException e,WebRequest req){
+		MyErrorDetails err =  new MyErrorDetails();
+		err.setTimestamps(LocalDateTime.now());
+		err.setMgs(e.getMessage());
+		err.setDetails(req.getDescription(false));
+		return new ResponseEntity<MyErrorDetails>(err,HttpStatus.BAD_REQUEST);
+	}
+	
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<MyErrorDetails> myexceptionhandler(Exception e,WebRequest req){
+		MyErrorDetails err =  new MyErrorDetails();
+		err.setTimestamps(LocalDateTime.now());
+		err.setMgs(e.getMessage());
+		err.setDetails(req.getDescription(false));
+		return new ResponseEntity<MyErrorDetails>(err,HttpStatus.BAD_REQUEST);
+	}
+	
+	
+	@ExceptionHandler(AdminException.class)
+	public ResponseEntity<MyErrorDetails> myexceptionhandler(AdminException e,WebRequest req){
+		MyErrorDetails err =  new MyErrorDetails();
+		err.setTimestamps(LocalDateTime.now());
+		err.setMgs(e.getMessage());
+		err.setDetails(req.getDescription(false));
+		return new ResponseEntity<MyErrorDetails>(err,HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(CustomerException.class)
+	public ResponseEntity<MyErrorDetails> myexceptionhandler(CustomerException e,WebRequest req){
 		MyErrorDetails err =  new MyErrorDetails();
 		err.setTimestamps(LocalDateTime.now());
 		err.setMgs(e.getMessage());
@@ -33,11 +65,11 @@ public class GlobalExceptionHandler {
 	}
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity<MyErrorDetails> myexceptionhandler(MethodArgumentNotValidException e){
+	public ResponseEntity<MyErrorDetails> myexceptionhandler(MethodArgumentNotValidException e,WebRequest req){
 		MyErrorDetails err =  new MyErrorDetails();
 		err.setTimestamps(LocalDateTime.now());
-		err.setMgs("validation Error");
-		err.setDetails(e.getBindingResult().getFieldError().getDefaultMessage());
+		err.setMgs(e.getBindingResult().getFieldError().getDefaultMessage());
+		err.setDetails(req.getDescription(false));
 		return new ResponseEntity<MyErrorDetails>(err,HttpStatus.BAD_REQUEST);
 	}
 }
