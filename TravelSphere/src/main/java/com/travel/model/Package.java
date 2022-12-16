@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -41,7 +41,11 @@ public class Package {
 	@NotBlank
 	@NotEmpty
 	@NotNull
-	private PackageType packageType;
+	private String packageType;
+	
+	private Integer availableSeats;
+	
+	private String journeyDate;
 	
 
 	private Double packageCost;
@@ -53,15 +57,16 @@ public class Package {
 	@NotNull
 	private  String paymentMode="online";
 	
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	private Hotel hotel;
-	
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	private Ticket ticket ;
-	
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	private Route route;
-	
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	private Bus bus;
 	

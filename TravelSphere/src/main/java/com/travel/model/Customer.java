@@ -1,6 +1,11 @@
 package com.travel.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -31,6 +36,10 @@ public class Customer extends User {
 	
 	@Pattern(regexp = "[A-Za-z0-9@]{6,15}")
 	private String password;
+	
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+	private List<Booking> bookinglist= new ArrayList<>();
 	
 	
 	

@@ -13,16 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.travel.exception.AdminException;
 import com.travel.exception.BusException;
 import com.travel.exception.HotelException;
+import com.travel.exception.PackageException;
 import com.travel.exception.RouteException;
 import com.travel.exception.TravelException;
 import com.travel.model.Admin;
 import com.travel.model.Bus;
 import com.travel.model.Hotel;
+import com.travel.model.Package;
 import com.travel.model.Route;
 import com.travel.model.Travel;
 import com.travel.service.AdminService;
 import com.travel.service.BusService;
 import com.travel.service.HotelService;
+import com.travel.service.PackageService;
 import com.travel.service.RouteService;
 import com.travel.service.TravelService;
 
@@ -43,6 +46,9 @@ public class AdminController {
 	
 	@Autowired
 	private RouteService routeService;
+	
+	@Autowired
+	private PackageService packageService;
 	
 	
 	@PostMapping("/Admins")
@@ -98,6 +104,17 @@ public class AdminController {
 		
 		
 		return new ResponseEntity<Route>(saveRoute,HttpStatus.CREATED);
+		
+	}
+	
+	@PostMapping("/Packagees")
+	public ResponseEntity<Package> createPackage(@Valid @RequestBody Package packagee) throws PackageException, RouteException {
+	
+		
+		Package savePackage = packageService.createPackage(packagee);
+		
+		
+		return new ResponseEntity<Package>(savePackage,HttpStatus.CREATED);
 		
 	}
 	

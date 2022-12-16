@@ -34,8 +34,8 @@ public class BusServiceImpl implements BusService{
 		 bus.setTravel(travel);
 		 bus.setTravelName(travel.getTravelName());
 		 travel.getBusList().add(bus);
-		 busrepo.save(bus);
-		 return bus;
+		Bus newBus = busrepo.save(bus);
+		 return newBus;
 			
 		}else {
 			throw new TravelException("travel company  not exist with id "+travelid);
