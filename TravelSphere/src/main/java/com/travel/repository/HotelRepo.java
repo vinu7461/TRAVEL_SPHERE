@@ -13,9 +13,7 @@ public interface  HotelRepo extends JpaRepository<Hotel, Integer> {
 
 	public Hotel findByHotelName(String hotelName);
 	
-//	@Query("from Hotel Where hotelAddress=?1 And avilableRooms>=?2 orderBy availableRooms")
-//	public List<Hotel> findByHotelAvailability(String hotelAddress,Integer availableRooms );
-	
+	public Hotel  findByHotelAddress(String hotelAddress);
 	
 	
 }

@@ -27,9 +27,8 @@ public class RouteServiceImpl implements RouteService {
 	route.getBus().addAll(busRepo.findByJourneyDateAndBusFromAndBusTo(route.getDateOfJourney(),route.getRouteFrom(), route.getRouteTo()));
 	
 	
-	routeRepo.save(route);
+	return routeRepo.save(route);
 	
-	return route;
 
 	}
 

@@ -7,13 +7,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import lombok.Data;
+
 @Entity
+@Data
 public class Booking {
 	
 	@Id
@@ -25,13 +29,18 @@ public class Booking {
 	@NotNull
 	private String bookingType="online";
 	
-	@NotBlank
-	@NotEmpty
+	
+	private LocalDateTime bookingDate=LocalDateTime.now();
+	
 	@NotNull
-	private LocalDateTime bookingDate;
+	private Integer customrId;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Package packageDetails;
 
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Customer customer;
+	
+	
 	
 }

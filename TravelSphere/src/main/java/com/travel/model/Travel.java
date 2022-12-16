@@ -13,6 +13,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Entity
@@ -28,6 +30,7 @@ public class Travel {
 	@NotEmpty
     private String travelName;
    
+	@JsonIgnore
    @OneToMany(cascade = CascadeType.ALL)
    private List<Bus> busList=new ArrayList<>();
 
