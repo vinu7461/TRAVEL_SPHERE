@@ -84,7 +84,7 @@ public class BookingServiceImpl implements BookingService {
 			throw new PackageException("Package not available with id"+packageId);
 		}
 		
-		
+		///////////////
 		
 	}
 
