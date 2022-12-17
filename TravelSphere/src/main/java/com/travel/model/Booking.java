@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,6 +35,10 @@ public class Booking {
 	@NotNull
 	private String bookingType="online";
 	
+	private String bookingStatus;
+	
+	
+	
 	@Min(1)
 	private Integer member;
 	
@@ -45,10 +50,12 @@ public class Booking {
 	
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
+//	@OneToOne
 	private Package packageDetails;
     
 	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
+//	@ManyToOne
 	private Customer customer;
 	
 	

@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.travel.exception.AdminException;
+import com.travel.exception.BookingException;
 import com.travel.exception.CustomerException;
+import com.travel.exception.LoginException;
 import com.travel.exception.PackageException;
 import com.travel.exception.RouteException;
 import com.travel.model.Admin;
@@ -59,14 +62,37 @@ public class CustomerController {
 	}
 	
 	
-	@PostMapping("/Bookings/{packid}")
-	public ResponseEntity<Ticket> createBooking(@Valid @RequestBody Booking booking,@PathVariable("packid")Integer packageId) throws CustomerException, PackageException{
+	@PostMapping("/Bookings/{packid}/{key}")
+	public ResponseEntity<Ticket> createBooking(@Valid @RequestBody Booking booking,@PathVariable("packid")Integer packageId,@PathVariable("key") String key) throws CustomerException, PackageException, LoginException{
 	
 		
-		Ticket saveBooking=bookingService.createBooking(booking, packageId);
+		Ticket saveBooking=bookingService.createBooking(booking, packageId,key);
 		
 		
 		return new ResponseEntity<Ticket>(saveBooking,HttpStatus.CREATED);
+		
+	}
+	
+	@GetMapping("/Bookings/{key}")
+	public ResponseEntity<List<Booking>> viewAllBooking( @PathVariable("key") String key) throws BookingException, LoginException  {
+	
+		
+		List<Booking> saveBookinglist = bookingService.viewAllBooking(key);
+		
+		
+		return new ResponseEntity<List<Booking>>(saveBookinglist,HttpStatus.CREATED);
+		
+	}
+	
+
+	@GetMapping("/Bookings/{Bookingid}/{key}")
+	public ResponseEntity<Booking> viewBookingById(@PathVariable("Bookingid") Integer bookingId,@PathVariable("key") String key) throws BookingException, LoginException  {
+	
+		
+		Booking saveBooking = bookingService.viewBooking(bookingId,key);
+		
+		
+		return new ResponseEntity<Booking>(saveBooking,HttpStatus.CREATED);
 		
 	}
 	
@@ -94,14 +120,24 @@ public class CustomerController {
 	}
 	
 
-	@GetMapping("/Routes")
-	public ResponseEntity<List<Route>> viewAllRoutes( ) throws RouteException {
+	@GetMapping("/Routes/{key}")
+	public ResponseEntity<List<Route>> viewAllRoutes(@PathVariable("key") String key ) throws RouteException, LoginException {
 	
 		
-		List<Route> saveRoutelist =routeService.viewAllRoutes();
+		List<Route> saveRoutelist =routeService.viewAllRoutes(key);
 		
 		
 		return new ResponseEntity<List<Route>>(saveRoutelist,HttpStatus.CREATED);
+		
+	}
+	
+	@DeleteMapping("/Bookings/{bookingId}/{key}")
+	public ResponseEntity<String> cancelBooking(@PathVariable("bookingId") Integer bookingId ,@PathVariable("key") String key ) throws LoginException, BookingException  {
+	
+		
+		String str=bookingService.cancelBooking(bookingId, key);
+		
+		return new ResponseEntity<String>(str,HttpStatus.CREATED);
 		
 	}
 
