@@ -76,4 +76,29 @@ public class PackageServiceImpl implements PackageService {
 	 
 	}
 
+
+	@Override
+	public Package searchPackage(Integer packageId) throws PackageException {
+		// TODO Auto-generated method stub
+		
+		
+		return packageRepo.findById(packageId).orElseThrow(()-> new PackageException("Package not found"));
+		
+		
+	}
+
+
+	@Override
+	public List<Package> viewAllPackages() throws PackageException {
+		// TODO Auto-generated method stub
+		
+		List<Package> packages=packageRepo.findAll();
+		
+		if(packages.size()==0) throw new PackageException("package not found");
+		
+		return packages;
+	}
+	
+	
+
 }

@@ -23,6 +23,8 @@ public class Ticket {
 	
 	private Integer bookingId;
 	
+	private Integer members;
+	
 	private Integer busNumber;
 	
 	private String source;
