@@ -1,5 +1,4 @@
 package com.travel.model;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +10,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -38,6 +39,7 @@ public class Customer extends User {
 	private String password;
 	
 	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
 	private List<Booking> bookinglist= new ArrayList<>();
 	

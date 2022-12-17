@@ -1,10 +1,12 @@
 package com.travel.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.travel.exception.BookingException;
 import com.travel.exception.PackageException;
 import com.travel.model.Booking;
 import com.travel.model.Customer;
@@ -41,11 +43,17 @@ public class BookingServiceImpl implements BookingService {
 		
 		if(opt.isPresent()) {
 			
+			
+			
 		Package existingPackage=opt.get();
+		
+		if(existingPackage.getAvailableSeats()<booking.getMember()) throw new PackageException("available seats are less than required ");
+		
+		existingPackage.setAvailableSeats(existingPackage.getAvailableSeats()-booking.getMember());
 		
 		booking.setPackageDetails(existingPackage);
 		
-		Optional<Customer>  opt1= customerRepo.findById(booking.getCustomrId());
+		Optional<Customer> opt1= customerRepo.findById(booking.getCustomerId());
 		
 		Customer existingCustomer=opt1.get();
 		
@@ -63,6 +71,8 @@ public class BookingServiceImpl implements BookingService {
 		newTicket.setBookingId(saveBooking.getBookingId());
 		
 		newTicket.setBusNumber(existingPackage.getBus().getBusNumber());
+		
+		newTicket.setMembers(saveBooking.getMember());
 		
 		newTicket.setSource(existingPackage.getSource());
 		
@@ -84,8 +94,42 @@ public class BookingServiceImpl implements BookingService {
 			throw new PackageException("Package not available with id"+packageId);
 		}
 		
-		///////////////
 		
+		
+	}
+
+
+
+
+	@Override
+	public Booking viewBooking(Integer bookingId) throws BookingException {
+	
+	Customer customer  =  new Customer();   // wehave to remove this	
+	
+    Booking booking= bookingRepo.findByCustomerIdAndBookingId(customer.getUserId(), bookingId);
+	
+	
+	         if(booking==null) throw new BookingException("Booking not available with id"+bookingId); 
+	        	 
+	        	 return booking;
+	        	 
+	    
+	}
+
+
+
+
+	@Override
+	public List<Booking> viewAllBooking() throws BookingException {
+		// TODO Auto-generated method stub
+		
+		Customer customer  =  new Customer();
+		
+		List<Booking> allBookings=customer.getBookinglist();
+		
+		if(allBookings.size()==0) throw new BookingException("Booking not available");
+		
+		return allBookings;
 	}
 
 	

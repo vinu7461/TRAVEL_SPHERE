@@ -9,5 +9,6 @@ import com.travel.model.Booking;
 @Repository
 public interface BookingRepo extends JpaRepository<Booking, Integer> {
 
+	public Booking findByCustomerIdAndBookingId(Integer customerId,Integer bookingId);
 	  
 }

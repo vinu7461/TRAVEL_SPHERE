@@ -67,7 +67,7 @@ public class Package {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Route route;
 	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = {CascadeType.ALL,CascadeType.REMOVE})
 	private Bus bus;
 	
 	
