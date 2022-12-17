@@ -8,4 +8,6 @@ import com.travel.model.Ticket;
 public interface TicketRepo extends JpaRepository<Ticket, Integer> {
   
 	
+	public Ticket findByBookingId(Integer bookingId);
+	
 }

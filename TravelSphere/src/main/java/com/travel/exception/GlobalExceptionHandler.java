@@ -90,4 +90,22 @@ public class GlobalExceptionHandler {
 		err.setDetails(req.getDescription(false));
 		return new ResponseEntity<MyErrorDetails>(err,HttpStatus.BAD_REQUEST);
 	}
+	
+	@ExceptionHandler(ReportException.class)
+	public ResponseEntity<MyErrorDetails> myexceptionhandler(ReportException e,WebRequest req){
+		MyErrorDetails err =  new MyErrorDetails();
+		err.setTimestamps(LocalDateTime.now());
+		err.setMgs(e.getMessage());
+		err.setDetails(req.getDescription(false));
+		return new ResponseEntity<MyErrorDetails>(err,HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(LoginException.class)
+	public ResponseEntity<MyErrorDetails> myexceptionhandler(LoginException e,WebRequest req){
+		MyErrorDetails err =  new MyErrorDetails();
+		err.setTimestamps(LocalDateTime.now());
+		err.setMgs(e.getMessage());
+		err.setDetails(req.getDescription(false));
+		return new ResponseEntity<MyErrorDetails>(err,HttpStatus.BAD_REQUEST);
+	}
 }

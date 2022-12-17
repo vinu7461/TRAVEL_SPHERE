@@ -60,14 +60,14 @@ public class Package {
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	private Hotel hotel;
-	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL)
-	private Ticket ticket ;
+	
+
+	
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	private Route route;
 	@JsonIgnore
-	@OneToOne(cascade = {CascadeType.ALL,CascadeType.REMOVE})
+	@OneToOne(cascade = CascadeType.ALL)
 	private Bus bus;
 	
 	
