@@ -1,11 +1,15 @@
 <p align="center">
 <img src="https://raw.githubusercontent.com/CarthikYes/Images/main/Sb201_Project_Logo.png"  style="width: 50%" />
 </p>
+
 <p align="center">
  TRAVEL_SPHERE
   </br>
 Trip Management System
 </p>
+ 
+
+
 
 # TRAVEL_SPHERE
 
