@@ -61,8 +61,7 @@ public class AdminController {
 	@Autowired
 	private PackageService packageService;
 	
-	@Autowired
-	private ReportService reportService;
+	
 	
 	
 	
@@ -88,7 +87,7 @@ public class AdminController {
 		
 	}
 	
-	@PostMapping("/Travels//{key}")
+	@PostMapping("/Travels/{key}")
 	public ResponseEntity<Travel> createTravels(@Valid @RequestBody Travel travel,@PathVariable("key") String key) throws TravelException, LoginException{
 	
 		
@@ -215,49 +214,8 @@ public class AdminController {
 		
 	}
 	
-	@PostMapping("/Report/{key}")
-	public ResponseEntity<Report> createReport(@Valid @RequestBody Report report,@PathVariable("key") String key) throws  ReportException, LoginException {
-	
-		
-		Report saveReport = reportService.addReport(report,key);
-		
-		
-		return new ResponseEntity<Report>(report,HttpStatus.CREATED);
-		
-	}
-	
-	@GetMapping("/Report/{id}/{key}")
-	public ResponseEntity<Report> getReport(@Valid @PathVariable ("id") Integer report_id,@PathVariable("key") String key) throws ReportException, LoginException{
-	
-		
-		Report GetReport=reportService.viewReport(report_id,key);
-		
-		
-		return new ResponseEntity<Report>(GetReport,HttpStatus.OK);
-		
-	}
-	
-	@GetMapping("/Report/{key}")
-	public ResponseEntity<List<Report>> GetAllReports(@PathVariable("key") String key) throws ReportException, LoginException{
-	
-		
-		List<Report> GetReports=reportService.ViewAllReport(key);
-		
-		
-		return new ResponseEntity<List<Report>>(GetReports,HttpStatus.OK);
-		
-	}
-	
-	@DeleteMapping("/Report/{id}/{key}")
-	public ResponseEntity<Report> ReportDelete(@Valid @PathVariable ("id") Integer report_id,@PathVariable("key") String key) throws ReportException, LoginException{
-	
-		
-		Report GetDeletedReport=reportService.DeleteReport(report_id,key);
-		
-		
-		return new ResponseEntity<Report>(GetDeletedReport,HttpStatus.OK);
-		
-	}
+
+
 	
 
 	

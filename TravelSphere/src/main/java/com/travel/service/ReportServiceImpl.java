@@ -41,7 +41,7 @@ public class ReportServiceImpl implements ReportService {
 	}
 
 	@Override
-	public Report viewReport(Integer Id,String key) throws ReportException, LoginException {
+	public Report viewReport(Integer ReportId,String key) throws ReportException, LoginException {
 		
 		 CurrentSession currentSession=	sessionRepo.findByUuid(key);
 		    if(currentSession==null) throw new LoginException("Please enter valid key ");
@@ -50,7 +50,7 @@ public class ReportServiceImpl implements ReportService {
 		    			
 		
 		
-		java.util.Optional<Report> opt=reportRepo.findById(Id);
+		java.util.Optional<Report> opt=reportRepo.findById(ReportId);
 		
 		if(opt.isPresent()) {
 			Report report=opt.get();
@@ -78,7 +78,7 @@ public class ReportServiceImpl implements ReportService {
 	}
 
 	@Override
-	public Report DeleteReport(Integer Id,String key) throws ReportException, LoginException {
+	public Report DeleteReport(Integer ReportId,String key) throws ReportException, LoginException {
 		
 		 CurrentSession currentSession=	sessionRepo.findByUuid(key);
 		    if(currentSession==null) throw new LoginException("Please enter valid key ");
@@ -87,7 +87,7 @@ public class ReportServiceImpl implements ReportService {
 		    			
 		
 		
-		java.util.Optional<Report> opt=reportRepo.findById(Id);
+		java.util.Optional<Report> opt=reportRepo.findById(ReportId);
 		
 		if(opt.isPresent()) {
 			Report existingReport=opt.get();

@@ -4,14 +4,13 @@ import com.travel.model.Feedback;
 import org.springframework.stereotype.Service;
 import com.travel.exception.CustomerException;
 import com.travel.exception.FeedbackException;
-
-
+import com.travel.exception.LoginException;
 
 import java.util.List;
-@Service
+
 public interface FeedbackService {
-    Feedback addFeedback(Feedback feedback, Integer id)throws CustomerException;
-    Feedback findByFeedbackId(Integer id)throws FeedbackException;
-    List<Feedback> findByCustomerId(Integer id)throws FeedbackException, CustomerException;
-    List<Feedback> viewAllFeedback() throws FeedbackException;
+	public Feedback addFeedback(Feedback feedback, String key) throws CustomerException, LoginException;
+
+	public List<Feedback> findByCustomer(String key)throws FeedbackException, CustomerException, LoginException;
+	public List<Feedback> viewAllFeedback(String key) throws FeedbackException, LoginException;
 }

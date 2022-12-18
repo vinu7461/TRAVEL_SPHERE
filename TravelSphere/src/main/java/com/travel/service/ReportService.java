@@ -11,9 +11,9 @@ public interface ReportService {
 	
 	public Report addReport(Report report,String key)throws ReportException, LoginException;
 	
-	public Report viewReport(Integer Id,String key)throws ReportException, LoginException;
+	public Report viewReport(Integer ReportId,String key)throws ReportException, LoginException;
 	
 	public List<Report> ViewAllReport(String key) throws ReportException, LoginException;
 	
-	public Report DeleteReport(Integer Id,String key)throws ReportException, LoginException;
+	public Report DeleteReport(Integer ReportId,String key)throws ReportException, LoginException;
 }
