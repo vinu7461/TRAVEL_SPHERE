@@ -66,7 +66,7 @@ public class PackageServiceImpl implements PackageService {
        
       
        
-       Collections.sort(buslist,(s1,s2)->s1.getCapacity()>s2.getCapacity()?+1:-1);  
+       Collections.sort(buslist,(s1,s2)->s1.getCapacity()<s2.getCapacity()?+1:-1);  
        
        
        
